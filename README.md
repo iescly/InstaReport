@@ -33,6 +33,7 @@ Supported on:
 ![Kali Linux](https://img.shields.io/badge/-Kali%20Linux-lightgrey)
 
 ---
+run licence.py first ! then get the licence else if you have set the licence by using ./ licence.py or python licence.py 
 
 ## 📦 Installation
 
