@@ -43,7 +43,7 @@ def crypto_menu():
 def show_upi_payment(action):
     display_banner()
     print(f"UPI Payment Details ({action}):")
-    print("Amount: $500")
+    print("Amount: $50")
     print("UPI ID: 9707905478@jio")
     print(f"\nPlease complete the payment using the provided UPI ID for {action}.")
 
@@ -56,7 +56,7 @@ def show_crypto_payment(crypto_choice, action):
     crypto_names = {"1": "USDT", "2": "BTC", "3": "LTC"}
     display_banner()
     print(f"{crypto_names[crypto_choice]} Payment Details ({action}):")
-    print("Amount: $500")
+    print("Amount: check readme for the price ")
     print(crypto_addresses[crypto_choice])
     print(f"\nPlease send the payment to the provided address for {action}.")
 
@@ -138,3 +138,4 @@ if __name__ == "__main__":
         print("Program terminated by user.")
 
         exit(0)
+
