@@ -44,7 +44,7 @@ def show_upi_payment(action):
     display_banner()
     print(f"UPI Payment Details ({action}):")
     print("Amount: $500")
-    print("UPI ID: Pay7h@ybl")
+    print("UPI ID: 9707905478@jio")
     print(f"\nPlease complete the payment using the provided UPI ID for {action}.")
 
 def show_crypto_payment(crypto_choice, action):
@@ -136,4 +136,5 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         clear_screen()
         print("Program terminated by user.")
+
         exit(0)
