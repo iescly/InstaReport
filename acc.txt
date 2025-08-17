@@ -1,0 +1,14 @@
+# Sample Instagram accounts file
+# Format: username:password (one per line)
+# Replace with real Instagram account credentials
+
+sample_user1:sample_password1
+sample_user2:sample_password2
+sample_user3:sample_password3
+
+# Instructions:
+# 1. Replace the sample entries above with real Instagram account credentials
+# 2. Use the format: username:password
+# 3. Add one account per line
+# 4. Remove these comment lines before using
+

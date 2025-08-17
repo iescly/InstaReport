@@ -1,0 +1,4 @@
+selenium>=4.0.0
+psutil>=5.8.0
+cryptography>=3.4.0
+
