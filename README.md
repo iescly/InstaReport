@@ -19,7 +19,7 @@
 - 🛡️ Social unbanning support (Instagram, Snapchat, Twitter, TikTok)  
 - 🕵️ Built-in social info scraper  
 - 💣 Cross-platform targetting (Instagram, Twitter, Threads, Snapchat)  
-- 🎯 License price: for manual `200` for ai server`$600`  
+- 🎯 License price: run main file to know
 - 🤝 Purchase: [@iEscly](https://t.me/iEscly)
 
 ---
