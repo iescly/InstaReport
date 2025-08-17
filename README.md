@@ -32,9 +32,6 @@ Supported on:
 [![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows)](https://t.me/iEscly)  
 ![Kali Linux](https://img.shields.io/badge/-Kali%20Linux-lightgrey)
 
----
-run licence.py first ! then get the licence else if you have set the licence by using ./ licence.py or python licence.py 
-
 ## 📦 Installation
 
 **Termux / Android** (Premium Only):
@@ -44,7 +41,7 @@ pkg install python git
 git clone https://github.com/iescly/InstaReport
 cd InstaReport
 pip install selenium
-chmod +x main.py
+chmod +x InstaReport.py
 python main.py
 ```
 
@@ -53,7 +50,7 @@ python main.py
 git clone https://github.com/iescly/InstaReport
 cd InstaReport
 pip install selenium
-python main.py
+python InstaReport.py
 ```
 
 **Kali Linux:**
@@ -63,8 +60,8 @@ sudo apt install python3 python3-pip git
 git clone https://github.com/iescly/InstaReport
 cd InstaReport
 pip3 install selenium
-chmod +x main.py
-python3 main.py
+chmod +x InstaReport.py
+python3 InstaReport.py
 ```
 
 ---
