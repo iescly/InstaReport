@@ -34,7 +34,7 @@ Supported on:
 
 ## 📦 Installation
 
-**Termux / Android** (Premium Only):
+**Termux / Android** :
 ```bash
 apt update && apt upgrade
 pkg install python git
@@ -42,7 +42,7 @@ git clone https://github.com/iescly/InstaReport
 cd InstaReport
 pip install selenium
 chmod +x InstaReport.py
-python main.py
+python InstaReport.py
 ```
 
 **Windows:**
