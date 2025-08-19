@@ -50,15 +50,15 @@ def _integrity_check():
         pass
 
 # Initialize basic protection
-_check_debug()
-_integrity_check()
+# _check_debug()
+# _integrity_check()
 
 # ==================== LICENSE VALIDATION SYSTEM ====================
 
 class LicenseSystem:
     def __init__(self):
         # Encoded keys for basic protection
-        self.owner_bypass_key = base64.b64decode(b'T1dORVJfTUFTVEVSXzIwMjRfSU5TVEFSRVBPU1Q=').decode()
+        self.owner_bypass_key = base64.b64decode(b'T1dORVJfTUFTVEVSXzIwMjRfSU5TVEFSRVBPUlQ=').decode()
         self.license_codes_file = "valid_codes.dat"
         self.key_salt = b'instareport_salt_2024_v2'
         
@@ -330,6 +330,8 @@ def report_accounts(username, accounts_file):
     try:
         from selenium import webdriver
         from selenium.webdriver.chrome.options import Options
+        from selenium.webdriver.chrome.service import Service
+        from webdriver_manager.chrome import ChromeDriverManager
         from selenium.common.exceptions import WebDriverException, TimeoutException, NoSuchElementException
         from selenium.webdriver.common.by import By
         from selenium.webdriver.support.ui import WebDriverWait
@@ -361,7 +363,7 @@ def report_accounts(username, accounts_file):
 
     # Initialize WebDriver
     try:
-        driver = webdriver.Chrome(options=options)
+        driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
         print(f"Initialized WebDriver successfully. Processing {len(accounts)} accounts...")
     except WebDriverException as e:
         print("Error: WebDriver initialization failed.")
