@@ -40,7 +40,7 @@ apt update && apt upgrade
 pkg install python git
 git clone https://github.com/iescly/InstaReport
 cd InstaReport
-pip install selenium
+pip install -r requirements.txt
 chmod +x InstaReport.py
 python InstaReport.py
 ```
@@ -49,7 +49,7 @@ python InstaReport.py
 ```bash
 git clone https://github.com/iescly/InstaReport
 cd InstaReport
-pip install selenium
+pip install -r requirements.txt
 python InstaReport.py
 ```
 
@@ -59,7 +59,7 @@ sudo apt update
 sudo apt install python3 python3-pip git
 git clone https://github.com/iescly/InstaReport
 cd InstaReport
-pip3 install selenium
+pip3 install -r requirements.txt
 chmod +x InstaReport.py
 python3 InstaReport.py
 ```
@@ -83,17 +83,16 @@ python3 InstaReport.py
   <img src="InstaReport-Logo.png" width="400px" alt="InstaReport Logo">
 </p>
 ---
-
 ## 🎯 📩 Contact & Purchase
 
-- 💬 Telegram: [@iEscly](https://t.me/iEscly)  
-- 📦 Buy License: [Click Here](https://t.me/iEscly)  
-- 🌐 Official Website: [instagramban.unaux.com](http://instagramban.unaux.com)  
+- 💬 Telegram: [@iEscly](https://t.me/iEscly)
+- 📷 Instagram: [@i3scly](https://www.instagram.com/i3scly?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==)
+- 📦 Buy License: [Click Here](https://t.me/iEscly)
+- 🌐 Official Website: [instagramban.unaux.com](http://instagramban.unaux.com)
 
 ---
 
 ## ⚠️ Disclaimer
-
 This tool is for **educational and research** purposes only. Misuse may violate Instagram's Terms of Service. Use responsibly.
 
 ---
