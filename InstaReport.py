@@ -145,8 +145,7 @@ class LicenseSystem:
         
         return False, "Invalid license code"
     
-    def show_payment_interface(self):
-        """Show payment interface for users without license"""
+     """Show payment interface for users without license"""
         print("\n" + "="*70)
         print("         🔒 INSTAREPORT - LICENSE REQUIRED 🔒")
         print("="*70)
@@ -154,19 +153,19 @@ class LicenseSystem:
         print("You can purchase a license or enter an existing license code.")
         print()
         print("💰 PRICING:")
-        print("   • 30 Days License: $29.99")
-        print("   • 90 Days License: $79.99") 
-        print("   • 1 Year License: $199.99")
+        print("   • 30 Days License: $29.99+vps")
+        print("   • 90 Days License: $79.99"+vps) 
+        print("   • 1 Year License: $199.99+vps")
         print("   • Lifetime License: $499.99")
         print()
         print("💳 PAYMENT METHODS:")
-        print("   • upi: 9707905478")
+        print("   • upi: 9365593766@omni")
         print("   • Crypto (USDT BSC bep20):0xb14efbbb184efd0b971f0ff2672d452d9f9fa3aa")
         print("   • Bank Transfer: Contact for details")
         print()
         print("📧 CONTACT FOR PURCHASE:")
         print("   • Email: nhackerraj@gmail.com")
-        print("   • Telegram: @iEscly")
+        print("   • Telegram: @i3SCLY @iESCLY")
         print("   • instagram: @i3scly")
         print()
         print("🎫 ALREADY HAVE A LICENSE CODE?")
