@@ -161,7 +161,7 @@ class LicenseSystem:
         print()
         print("💳 PAYMENT METHODS:")
         print("   • upi: 9707905478")
-        print("   • Crypto (USDT BSC bep20): 0xd1e005178b87cee6a815cf595ac98c1e9b93402e")
+        print("   • Crypto (USDT BSC bep20):0xb14efbbb184efd0b971f0ff2672d452d9f9fa3aa")
         print("   • Bank Transfer: Contact for details")
         print()
         print("📧 CONTACT FOR PURCHASE:")
