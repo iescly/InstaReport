@@ -145,7 +145,8 @@ class LicenseSystem:
         
         return False, "Invalid license code"
     
-     """Show payment interface for users without license"""
+    def show_payment_interface(self):
+        """Show payment interface for users without license"""
         print("\n" + "="*70)
         print("         🔒 INSTAREPORT - LICENSE REQUIRED 🔒")
         print("="*70)
@@ -153,19 +154,19 @@ class LicenseSystem:
         print("You can purchase a license or enter an existing license code.")
         print()
         print("💰 PRICING:")
-        print("   • 30 Days License: $29.99+vps")
-        print("   • 90 Days License: $79.99"+vps) 
-        print("   • 1 Year License: $199.99+vps")
+        print("   • 30 Days License: $29.99")
+        print("   • 90 Days License: $79.99") 
+        print("   • 1 Year License: $199.99")
         print("   • Lifetime License: $499.99")
         print()
         print("💳 PAYMENT METHODS:")
-        print("   • upi: 9365593766@omni")
-        print("   • Crypto (USDT BSC bep20):0xb14efbbb184efd0b971f0ff2672d452d9f9fa3aa")
+        print("   • upi: 9707905478")
+        print("   • Crypto (USDT BSC bep20): 0xd1e005178b87cee6a815cf595ac98c1e9b93402e")
         print("   • Bank Transfer: Contact for details")
         print()
         print("📧 CONTACT FOR PURCHASE:")
         print("   • Email: nhackerraj@gmail.com")
-        print("   • Telegram: @i3SCLY @iESCLY")
+        print("   • Telegram: @iEscly")
         print("   • instagram: @i3scly")
         print()
         print("🎫 ALREADY HAVE A LICENSE CODE?")
@@ -325,8 +326,166 @@ def check_dependencies():
     
     return True
 
+def debug_page_structure(driver):
+    """Debug function to see what's on the page"""
+    try:
+        from selenium.webdriver.common.by import By
+        
+        # Get all input fields
+        inputs = driver.find_elements(By.TAG_NAME, "input")
+        print(f"🔍 Found {len(inputs)} input fields on page:")
+        for i, input_field in enumerate(inputs):
+            input_type = input_field.get_attribute("type")
+            input_name = input_field.get_attribute("name")
+            input_placeholder = input_field.get_attribute("placeholder")
+            input_aria_label = input_field.get_attribute("aria-label")
+            print(f"  {i+1}. Type: {input_type}, Name: {input_name}, Placeholder: {input_placeholder}, Aria-label: {input_aria_label}")
+        
+        # Get all buttons
+        buttons = driver.find_elements(By.TAG_NAME, "button")
+        print(f"🔍 Found {len(buttons)} buttons on page:")
+        for i, button in enumerate(buttons):
+            text = button.text.strip()
+            button_type = button.get_attribute("type")
+            if text or button_type:
+                print(f"  {i+1}. Button: '{text}', Type: {button_type}")
+        
+        # Get page title and URL
+        print(f"🌐 Current URL: {driver.current_url}")
+        print(f"📄 Page title: {driver.title}")
+        
+    except Exception as e:
+        print(f"❌ Debug error: {e}")
+
+def find_and_click_element(driver, selectors, timeout=10, element_name="element"):
+    """Try multiple selectors to find and click an element"""
+    from selenium.webdriver.common.by import By
+    from selenium.webdriver.support.ui import WebDriverWait
+    from selenium.webdriver.support import expected_conditions as EC
+    
+    for selector in selectors:
+        try:
+            element = WebDriverWait(driver, timeout).until(
+                EC.element_to_be_clickable((By.XPATH, selector))
+            )
+            element.click()
+            print(f"✅ Found {element_name} with selector: {selector}")
+            return True
+        except Exception as e:
+            continue
+    print(f"❌ Could not find {element_name} with any selector")
+    return False
+
+def find_and_send_keys(driver, selectors, keys, timeout=10, element_name="element"):
+    """Try multiple selectors to find and send keys to an element"""
+    from selenium.webdriver.common.by import By
+    from selenium.webdriver.support.ui import WebDriverWait
+    from selenium.webdriver.support import expected_conditions as EC
+    
+    for selector in selectors:
+        try:
+            element = WebDriverWait(driver, timeout).until(
+                EC.presence_of_element_located((By.XPATH, selector))
+            )
+            element.clear()
+            element.send_keys(keys)
+            print(f"✅ Found {element_name} with selector: {selector}")
+            return True
+        except Exception as e:
+            continue
+    print(f"❌ Could not find {element_name} with any selector")
+    return False
+
+def wait_for_login_completion(driver, account_username, timeout=60):
+    """Wait for login to complete, handling OTP and 2FA"""
+    from selenium.webdriver.common.by import By
+    from selenium.webdriver.support.ui import WebDriverWait
+    from selenium.webdriver.support import expected_conditions as EC
+    from selenium.common.exceptions import TimeoutException
+    
+    print("⏳ Waiting for login to complete...")
+    
+    start_time = time.time()
+    while time.time() - start_time < timeout:
+        current_url = driver.current_url
+        
+        # Check if we're on the home page (login successful)
+        if "instagram.com" in current_url and ("/accounts/login" not in current_url and "login" not in current_url):
+            try:
+                # Look for home page elements to confirm login
+                home_indicators = [
+                    "//a[contains(@href, '/direct/inbox/')]",
+                    "//a[contains(@href, '/explore/')]",
+                    "//a[contains(@href, '/reels/')]",
+                    "//span[contains(text(), 'Home')]",
+                    "//div[contains(@class, 'home')]"
+                ]
+                
+                for indicator in home_indicators:
+                    try:
+                        element = driver.find_element(By.XPATH, indicator)
+                        if element.is_displayed():
+                            print("✅ Login successful - reached home page")
+                            return True
+                    except:
+                        continue
+                
+                # If we're not on login page and no errors, assume success
+                print("✅ Login likely successful")
+                return True
+                
+            except Exception as e:
+                print(f"⚠️  Checking login status: {e}")
+                continue
+        
+        # Check for OTP/2FA requirement
+        try:
+            otp_elements = driver.find_elements(By.XPATH, "//input[@placeholder='Security code'] | //input[contains(@aria-label, 'code')] | //input[contains(@name, 'code')] | //h2[contains(text(), 'Code')]")
+            if otp_elements:
+                print("🔐 OTP/2FA detected - manual intervention required")
+                print("💡 Please complete the security verification manually")
+                input("Press Enter after completing OTP/2FA verification...")
+                # Wait a bit after manual intervention
+                time.sleep(5)
+                continue
+        except:
+            pass
+        
+        # Check for "Suspicious Login Attempt" or other security challenges
+        try:
+            security_challenge = driver.find_elements(By.XPATH, "//h2[contains(text(), 'Suspicious')] | //h2[contains(text(), 'Challenge')] | //button[contains(text(), 'This Was Me')]")
+            if security_challenge:
+                print("⚠️  Security challenge detected - manual intervention required")
+                print("💡 Please complete the security challenge manually")
+                input("Press Enter after completing security challenge...")
+                time.sleep(5)
+                continue
+        except:
+            pass
+        
+        # Check for login errors
+        try:
+            error_messages = driver.find_elements(By.XPATH, "//*[contains(text(), 'incorrect')] | //*[contains(text(), 'error')] | //*[contains(text(), 'problem')] | //*[contains(text(), 'invalid')]")
+            if error_messages:
+                for error in error_messages:
+                    if error.is_displayed():
+                        print(f"❌ Login error: {error.text}")
+                        return False
+        except:
+            pass
+        
+        # Check if we're still on login page after a while
+        if "accounts/login" in current_url and time.time() - start_time > 15:
+            print("❌ Still on login page after 15 seconds - login likely failed")
+            return False
+        
+        time.sleep(2)
+    
+    print("❌ Login timeout reached")
+    return False
+
 def report_accounts(username, accounts_file):
-    """Main reporting function"""
+    """Main reporting function - WITH PROPER LOGIN HANDLING"""
     try:
         from selenium import webdriver
         from selenium.webdriver.chrome.options import Options
@@ -336,6 +495,7 @@ def report_accounts(username, accounts_file):
         from selenium.webdriver.common.by import By
         from selenium.webdriver.support.ui import WebDriverWait
         from selenium.webdriver.support import expected_conditions as EC
+        from selenium.webdriver.common.keys import Keys
     except ImportError:
         print("❌ Selenium not installed. Please run: pip install selenium")
         return
@@ -345,6 +505,11 @@ def report_accounts(username, accounts_file):
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-gpu")
+    options.add_argument("--disable-blink-features=AutomationControlled")
+    options.add_experimental_option("excludeSwitches", ["enable-automation"])
+    options.add_experimental_option('useAutomationExtension', False)
+    options.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
+    options.add_argument("--window-size=1920,1080")
 
     # Read account credentials from file
     try:
@@ -364,6 +529,7 @@ def report_accounts(username, accounts_file):
     # Initialize WebDriver
     try:
         driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+        driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
         print(f"Initialized WebDriver successfully. Processing {len(accounts)} accounts...")
     except WebDriverException as e:
         print("Error: WebDriver initialization failed.")
@@ -388,96 +554,264 @@ def report_accounts(username, accounts_file):
             if i % 3 == 0:
                 _check_debug()
             
-            # Log in
+            # Log in - COMPLETELY UPDATED LOGIN PROCESS
+            print("🌐 Navigating to Instagram login...")
             driver.get("https://www.instagram.com/accounts/login/")
-            WebDriverWait(driver, 15).until(EC.presence_of_element_located((By.NAME, "username")))
+            time.sleep(3)
             
-            # Clear and enter credentials
-            username_field = driver.find_element(By.NAME, "username")
-            password_field = driver.find_element(By.NAME, "password")
+            # Wait for page to load completely
+            WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.TAG_NAME, "body"))
+            )
             
-            username_field.clear()
-            username_field.send_keys(account[0])
-            password_field.clear()
-            password_field.send_keys(account[1])
+            # DEBUG: Show page structure
+            print("🔍 Debugging page structure...")
+            debug_page_structure(driver)
             
-            # Find and click submit button
-            submit_button = driver.find_element(By.XPATH, "//button[@type='submit']")
-            submit_button.click()
-            show_loading_screen(8)
-
-            # Check for login errors
-            try:
-                error_element = driver.find_element(By.XPATH, "//div[contains(text(), 'incorrect') or contains(text(), 'error')]")
-                print(f"Login failed for {account[0]}: Invalid credentials")
+            # UPDATED: Try to find username/email field with CURRENT selectors
+            username_selectors = [
+                "//input[@name='username']",
+                "//input[@aria-label='Phone number, username, or email']",
+                "//input[@aria-label='Username']",
+                "//input[@placeholder='Phone number, username, or email']",
+                "//input[@placeholder='Username']",
+                "//input[@type='text']",
+                "//input[contains(@class, 'input')]",
+                "//input[@id='loginForm']//input[@type='text']",
+                "//form//input[@type='text']",
+                "//input[@name='email']",
+                "//input[@aria-label='Email']",
+                "//input[@placeholder='Email']",
+                "//input[1]",  # First input on page
+                "//input",  # Any input field
+            ]
+            
+            # Try each selector with longer timeout
+            username_found = False
+            username_field = None
+            for selector in username_selectors:
+                try:
+                    print(f"🔍 Trying username selector: {selector}")
+                    username_field = WebDriverWait(driver, 5).until(
+                        EC.presence_of_element_located((By.XPATH, selector))
+                    )
+                    if username_field.is_displayed() and username_field.is_enabled():
+                        username_field.clear()
+                        username_field.send_keys(account[0])
+                        print(f"✅ Username field found with: {selector}")
+                        username_found = True
+                        break
+                except:
+                    continue
+            
+            if not username_found:
+                print("❌ Could not find username field")
+                # Try to find any visible input and click it
+                try:
+                    inputs = driver.find_elements(By.TAG_NAME, "input")
+                    for input_field in inputs:
+                        if input_field.is_displayed():
+                            input_field.click()
+                            input_field.clear()
+                            input_field.send_keys(account[0])
+                            print("✅ Used fallback input field method")
+                            username_found = True
+                            username_field = input_field
+                            break
+                except:
+                    pass
+            
+            if not username_found:
+                print(f"❌ Username field not found for {account[0]}")
                 failed_reports += 1
                 continue
-            except NoSuchElementException:
-                pass  # No error, login successful
-
+            
+            # UPDATED: Try to find password field with CURRENT selectors
+            password_selectors = [
+                "//input[@name='password']",
+                "//input[@aria-label='Password']",
+                "//input[@type='password']",
+                "//input[@placeholder='Password']",
+                "//input[contains(@class, 'password')]",
+                "//input[@id='loginForm']//input[@type='password']",
+                "//form//input[@type='password']",
+                "//input[2]",  # Second input on page
+                "//input[@type='password']",  # Any password field
+            ]
+            
+            password_found = False
+            password_field = None
+            for selector in password_selectors:
+                try:
+                    print(f"🔍 Trying password selector: {selector}")
+                    password_field = WebDriverWait(driver, 5).until(
+                        EC.presence_of_element_located((By.XPATH, selector))
+                    )
+                    if password_field.is_displayed() and password_field.is_enabled():
+                        password_field.clear()
+                        password_field.send_keys(account[1])
+                        print(f"✅ Password field found with: {selector}")
+                        password_found = True
+                        break
+                except:
+                    continue
+            
+            if not password_found:
+                # Try tab navigation as fallback
+                try:
+                    username_field.send_keys(Keys.TAB)
+                    password_field = driver.switch_to.active_element
+                    if password_field.get_attribute("type") == "password":
+                        password_field.send_keys(account[1])
+                        print("✅ Used TAB navigation for password field")
+                        password_found = True
+                except:
+                    pass
+            
+            if not password_found:
+                print(f"❌ Password field not found for {account[0]}")
+                failed_reports += 1
+                continue
+            
+            # UPDATED LOGIN BUTTON SELECTORS
+            login_button_selectors = [
+                "//button[@type='submit']",
+                "//button[contains(., 'Log in')]",
+                "//button[contains(., 'Log In')]",
+                "//button[contains(., 'Sign in')]",
+                "//button[contains(., 'Login')]",
+                "//div[contains(text(), 'Log in')]",
+                "//span[contains(text(), 'Log in')]",
+                "//button[contains(@class, 'login')]",
+                "//button[contains(@class, 'submit')]",
+                "//form//button",
+                "//button[.//div[contains(text(), 'Log in')]]",
+                "//div[@role='button'][contains(., 'Log in')]",
+                "//button",  # Any button
+            ]
+            
+            login_clicked = False
+            for selector in login_button_selectors:
+                try:
+                    login_button = WebDriverWait(driver, 5).until(
+                        EC.element_to_be_clickable((By.XPATH, selector))
+                    )
+                    if "log" in login_button.text.lower() or "sign" in login_button.text.lower() or selector == "//button[@type='submit']":
+                        login_button.click()
+                        print(f"✅ Login button clicked with: {selector}")
+                        login_clicked = True
+                        break
+                except:
+                    continue
+            
+            if not login_clicked:
+                # Try pressing Enter as final fallback
+                try:
+                    password_field.send_keys(Keys.ENTER)
+                    print("✅ Used Enter key as fallback for login")
+                    login_clicked = True
+                except:
+                    print(f"❌ Login button not found for {account[0]}")
+                    failed_reports += 1
+                    continue
+            
+            # WAIT FOR LOGIN COMPLETION WITH OTP/2FA HANDLING
+            login_success = wait_for_login_completion(driver, account[0])
+            
+            if not login_success:
+                print(f"❌ Login failed for {account[0]}")
+                failed_reports += 1
+                continue
+            
+            print("✅ Login successful, proceeding to reporting...")
+            
             # Visit target user's page
             target_url = f"https://www.instagram.com/{username}/"
+            print(f"🌐 Navigating to target profile: {username}")
             driver.get(target_url)
-            show_loading_screen(5)
+            time.sleep(5)
             
             # Check if profile exists
             try:
-                driver.find_element(By.XPATH, "//span[contains(text(), 'Sorry, this page')]")
-                print(f"Target profile '{username}' not found or private")
+                driver.find_element(By.XPATH, "//h2[contains(text(), 'Sorry') or contains(text(), 'Not Found') or contains(text(), 'This page')]")
+                print(f"❌ Target profile '{username}' not found")
+                failed_reports += 1
                 continue
             except NoSuchElementException:
                 pass  # Profile exists
             
             # Report user
             try:
-                # Look for options button (three dots)
-                option_button = WebDriverWait(driver, 10).until(
-                    EC.element_to_be_clickable((By.XPATH, "//div[@role='button']//svg[@aria-label='Options' or @aria-label='More options']"))
-                )
-                option_button.click()
-                show_loading_screen(3)
+                print("🔍 Looking for options button...")
+                option_button_selectors = [
+                    "//div[@role='button']//*[local-name()='svg' and (@aria-label='Options' or @aria-label='More options')]",
+                    "//button[contains(@aria-label, 'Options') or contains(@aria-label, 'More')]",
+                    "//span[contains(text(), 'Options') or contains(text(), 'More')]",
+                    "//div[contains(@class, 'more')]//button",
+                    "//button[contains(@class, 'more')]",
+                    "//svg[@aria-label='More options']",
+                    "//div[@role='button'][contains(., '···') or contains(., '...')]",
+                ]
                 
-                # Click Report button
-                report_button = WebDriverWait(driver, 10).until(
-                    EC.element_to_be_clickable((By.XPATH, "//button[contains(text(), 'Report')]"))
-                )
-                report_button.click()
-                show_loading_screen(3)
+                if not find_and_click_element(driver, option_button_selectors, 10, "options button"):
+                    print(f"❌ Options button not found for {account[0]}")
+                    failed_reports += 1
+                    continue
                 
-                # Select report reason
-                spam_button = WebDriverWait(driver, 10).until(
-                    EC.element_to_be_clickable((By.XPATH, "//button[contains(text(), 'spam') or contains(text(), 'Spam')]"))
-                )
-                spam_button.click()
-                show_loading_screen(2)
+                time.sleep(2)
                 
-                # Submit report
-                submit_report = WebDriverWait(driver, 10).until(
-                    EC.element_to_be_clickable((By.XPATH, "//button[contains(text(), 'Submit') or contains(text(), 'Report')]"))
-                )
-                submit_report.click()
-                show_loading_screen(2)
+                print("🔍 Looking for report button...")
+                report_button_selectors = [
+                    "//button[contains(text(), 'Report')]",
+                    "//div[contains(text(), 'Report')]",
+                    "//span[contains(text(), 'Report')]",
+                    "//button[contains(., 'Report')]",
+                ]
+                
+                if not find_and_click_element(driver, report_button_selectors, 10, "report button"):
+                    print(f"❌ Report button not found for {account[0]}")
+                    failed_reports += 1
+                    continue
+                
+                time.sleep(2)
+                
+                print("🔍 Looking for spam reason...")
+                spam_button_selectors = [
+                    "//button[contains(text(), 'spam') or contains(text(), 'Spam')]",
+                    "//div[contains(text(), 'spam') or contains(text(), 'Spam')]",
+                    "//span[contains(text(), 'spam') or contains(text(), 'Spam')]",
+                ]
+                
+                if not find_and_click_element(driver, spam_button_selectors, 10, "spam reason"):
+                    print(f"❌ Spam reason button not found for {account[0]}")
+                    failed_reports += 1
+                    continue
+                
+                time.sleep(2)
+                
+                print("🔍 Looking for submit button...")
+                submit_button_selectors = [
+                    "//button[contains(text(), 'Submit') or contains(text(), 'Report')]",
+                    "//div[contains(text(), 'Submit') or contains(text(), 'Report')]",
+                    "//span[contains(text(), 'Submit') or contains(text(), 'Report')]",
+                ]
+                
+                if not find_and_click_element(driver, submit_button_selectors, 10, "submit button"):
+                    print(f"❌ Submit button not found for {account[0]}")
+                    failed_reports += 1
+                    continue
+                
+                time.sleep(2)
                 
                 print(f"✅ Successfully reported {username} using account {account[0]}")
                 successful_reports += 1
-                
-                # Close any remaining modals
-                try:
-                    close_button = driver.find_element(By.XPATH, "//button[contains(text(), 'Close') or contains(text(), 'Done')]")
-                    close_button.click()
-                except:
-                    pass
                     
-            except (NoSuchElementException, TimeoutException) as e:
-                print(f"❌ Failed to report using account {account[0]}: Report button not found")
+            except Exception as e:
+                print(f"❌ Failed to report using account {account[0]}: {str(e)}")
                 failed_reports += 1
 
-        except (NoSuchElementException, TimeoutException) as e:
-            print(f"❌ Error occurred while processing account {account[0]}: {str(e)}")
-            failed_reports += 1
-            continue
         except Exception as e:
-            print(f"❌ Unexpected error with account {account[0]}: {str(e)}")
+            print(f"❌ Error occurred while processing account {account[0]}: {str(e)}")
             failed_reports += 1
             continue
 
@@ -491,7 +825,8 @@ def report_accounts(username, accounts_file):
     print(f"Total accounts processed: {len(accounts)}")
     print(f"Successful reports: {successful_reports}")
     print(f"Failed reports: {failed_reports}")
-    print(f"Success rate: {(successful_reports/len(accounts)*100):.1f}%")
+    success_rate = (successful_reports/len(accounts)*100) if accounts else 0
+    print(f"Success rate: {success_rate:.1f}%")
     print("="*50)
 
 # ==================== MAIN APPLICATION ====================
@@ -546,4 +881,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
