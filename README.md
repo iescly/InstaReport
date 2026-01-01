@@ -87,8 +87,8 @@ python3 InstaReport.py
 
 - 💬 Telegram: [@iEscly](https://t.me/iEscly)
 - 📷 Instagram: [@i3scly](https://www.instagram.com/i3scly?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==)
-- 📦 Buy License: [Click Here](https://t.me/iEscly)
-- 🌐 Official Website: [instagramban.unaux.com](http://instagramban.unaux.com)
+- 📦 Buy License: [Click Here](https://instagramban.lovable.app/)
+- 🌐 Official Website: [instagramban.unaux.com](https://instagramban.lovable.app/)
 
 ---
 
