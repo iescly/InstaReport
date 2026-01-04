@@ -1,9 +1,9 @@
-api_key: paste your key here
-api_sescret: paste you api secret here 
+paste your license key here
+
+lic: code api and key 
 
 
 
-you can get your api key here 
-telegram: @aslVpsBot
 
-click /start and proceed
+you can get your license here : https://instagramban.lovable.com
+
