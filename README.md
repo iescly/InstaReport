@@ -61,7 +61,7 @@ pkg install python git
 git clone https://github.com/iescly/InstaReport
 cd InstaReport
 pip install -r requirements.txt
-chmod +x InstaReport.py
+chmod +x InstaReport_GUI.py
 python InstaReport.py
 ```
 </details>
@@ -73,7 +73,7 @@ python InstaReport.py
 git clone https://github.com/iescly/InstaReport
 cd InstaReport
 pip install -r requirements.txt
-python InstaReport.py
+python InstaReport_GUI.py
 ```
 </details>
 
@@ -86,8 +86,8 @@ sudo apt install python3 python3-pip git
 git clone https://github.com/iescly/InstaReport
 cd InstaReport
 pip3 install -r requirements.txt
-chmod +x InstaReport.py
-python3 InstaReport.py
+chmod +x InstaReport_GUI.py
+python3 InstaReport_GUI.py
 ```
 </details>
 
