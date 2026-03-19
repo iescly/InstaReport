@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="InstaReport-Logo.png" width="420px" alt="InstaReport — Social Media Auto Report, Ban & Unban Tool">
-</p>
-
 <h1 align="center">🚫 InstaReport v4.3.1</h1>
 
 <p align="center">
