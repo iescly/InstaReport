@@ -1,4 +1,4 @@
-<h1 align="center">🚫 InstaReport v4.3.1</h1>
+<h1 align="center">🚫 InstaReport v8.6.0</h1>
 
 <p align="center">
   <strong>The #1 Social Media Auto-Report, Ban & Unban Automation Tool</strong><br>
@@ -26,7 +26,7 @@
 | 💣 **Cross-Platform Targeting** | Works on Instagram, Twitter/X, Threads & Snapchat |
 | 🕵️ **Built-in Info Scraper** | Extract public profile data across platforms |
 | 🔑 **License-Based Access** | Secure activation — choose from 30-day, 90-day, 1-year or lifetime plans |
-| 🖥️ **Multi-Platform Support** | Runs on Android (Termux), Windows & Kali Linux |
+| 🖥️ **Multi-Platform Support** | Runs on Android (Termux nethunter), Windows & Kali Linux |
 
 <p align="center">
   <a href="https://instagramban.lovable.app/">
@@ -69,7 +69,7 @@ python InstaReport.py
 git clone https://github.com/iescly/InstaReport
 cd InstaReport
 pip install -r requirements.txt
-python InstaReport_GUI.py
+python InstaReport.py
 ```
 </details>
 
@@ -82,8 +82,8 @@ sudo apt install python3 python3-pip git
 git clone https://github.com/iescly/InstaReport
 cd InstaReport
 pip3 install -r requirements.txt
-chmod +x InstaReport_GUI.py
-python3 InstaReport_GUI.py
+chmod +x InstaReport.py
+python3 InstaReport.py
 ```
 </details>
 
