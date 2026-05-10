@@ -32,7 +32,7 @@
 ## 🖼️ Preview
 
 <p align="center">
-  <video src="./lib/preview.mp4" autoplay loop muted width="100%"></video>
+  <video src="./lib/instareport.mp4" autoplay loop muted width="100%"></video>
 </p>
 
 ---
