@@ -154,12 +154,12 @@ python3 InstaReport.py
 # 📊 Project Stats
 
 <p align="center">
-  <img src="https://shinycounter.com/count.php?user=instareport&style=0006" alt="Visitors">
+  <img src="https://komarev.com/ghpvc/?username=iescly&label=Visitors&color=7c3aed&style=for-the-badge "alt="Visitors >
 </p>
 
 <p align="center">
   <a href="https://github.com/iescly">
-    <img src="https://github-readme-stats.vercel.app/api?username=iescly&theme=tokyonight&hide_border=true&bg_color=0a0a0a" alt="GitHub Stats">
+    <img src="https://github-readme-stats.vercel.app/api?username=iescly&theme=tokyonight&hide_border=true&bg_color=0a0a0a](https://github-readme-stats.vercel.app/api?username=iescly&show_icons=true&theme=tokyonight&hide_border=true&bg_color=00000000)" alt="GitHub Stats">
   </a>
 </p>
 
