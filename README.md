@@ -158,9 +158,7 @@ python3 InstaReport.py
 </p>
 
 <p align="center">
-  <a href="https://github.com/iescly">
-    <img src="https://github-readme-stats.vercel.app/api?username=iescly&show_icons=true&theme=tokyonight&hide_border=true&bg_color=00000000)" alt="GitHub Stats">
-  </a>
+  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=iescly&show_icons=true&theme=tokyonight&hide_border=true&v=2" />
 </p>
 
 ---
