@@ -32,7 +32,7 @@
 ## 🖼️ Preview
 
 <p align="center">
-  <img src="https://placehold.co/1000x500/0a0a0a/7c3aed?text=InstaReport+v8.6.6+PRESTIGE" width="900" alt="Preview">
+  <video src="./lib/preview.mp4" autoplay loop muted width="100%"></video>
 </p>
 
 ---
