@@ -154,11 +154,11 @@ python3 InstaReport.py
 # 📊 Project Stats
 
 <p align="center">
-  <img src="https://komarev.com/ghpvc/?username=iescly&label=Visitors&color=7c3aed&style=for-the-badge "alt="Visitors >
+  <img src="https://komarev.com/ghpvc/?username=iescly&label=Visitors&color=7c3aed&style=for-the-badge "alt="Visitors">
 </p>
 
 <p align="center">
-  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=iescly&show_icons=true&theme=tokyonight&hide_border=true&v=2" />
+  <img src="https://github-readme-stats-sigma-five.vercel.app/api?username=iescly&show_icons=true&theme=tokyonight&hide_border=true" "alt="Github Stats">
 </p>
 
 ---
