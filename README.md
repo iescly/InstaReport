@@ -35,8 +35,6 @@
   <img src="https://placehold.co/1000x500/0a0a0a/7c3aed?text=InstaReport+v8.6.6+PRESTIGE" width="900" alt="Preview">
 </p>
 
-> Replace the placeholder image above with your real UI screenshot or GIF.
-
 ---
 
 # ✨ Core Features
