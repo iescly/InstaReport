@@ -1,4 +1,4 @@
-<h1 align="center">🚫 InstaReport v8.6.0</h1>
+<h1 align="center">🚫 InstaReport v8.6.6 PRESTIGE</h1>
 
 <p align="center">
   <strong>The #1 Social Media Auto-Report, Ban & Unban Automation Tool</strong><br>
@@ -158,5 +158,9 @@ This tool is for **educational and research purposes only**. Misuse may violate 
 ---
 
 <p align="center">
-  <sub>Built with 🔥 by <a href="https://t.me/iEscly">@iEscly</a> · <a href="https://instagramban.lovable.app/">instagramban.lovable.app</a></sub>
+  <sub>
+    Engineered with passion & precision ⚡ by 
+    <a href="https://t.me/iEscly">@iEscly</a> · 
+    <a href="https://instagramban.lovable.app/">instagramban.lovable.app</a>
+  </sub>
 </p>
