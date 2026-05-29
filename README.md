@@ -127,16 +127,17 @@ We offer flexible plans to fit your needs:
 
 ## 🌐 Live Stats
 
-![Visitor Count](https://shinycounter.com/count.php?user=instareport&style=0006)  
-[![Website Status](https://stats.uptimerobot.com/GNoXKUztm1)](https://stats.uptimerobot.com/GNoXKUztm1)
-
+<p align="center">
+  <img src="https://visitor-badge.laobi.icu/badge?page_id=iescly.InstaReport" alt="Visitors">
+  <img src="https://img.shields.io/website?url=https%3A%2F%2Finstagramban.lovable.app&label=Website" alt="Website Status">
+</p>
 ---
 
 ## 📊 GitHub Stats
 
-<p align="center">
+p align="center">
   <a href="https://github.com/iescly">
-    <img src="https://github-readme-stats.vercel.app/api?username=iescly&theme=tokyonight&hide_border=true&bg_color=0a0a0a" alt="GitHub Stats">
+    <img src="https://github-readme-stats.vercel.app/api?username=iescly&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0a0a0a" alt="GitHub Stats">
   </a>
 </p>
 
