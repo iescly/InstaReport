@@ -136,10 +136,11 @@ We offer flexible plans to fit your needs:
 ## 📊 GitHub Stats
 
 <p align="center">
-  <a href="https://github.com/iescly">
-    <img src="https://github-readme-stats.vercel.app/api?username=iescly&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0a0a0a" alt="GitHub Stats">
-  </a>
+  <img src="https://img.shields.io/github/stars/iescly/InstaReport?style=for-the-badge&color=7c3aed" alt="Stars">
+  <img src="https://img.shields.io/github/forks/iescly/InstaReport?style=for-the-badge&color=2563eb" alt="Forks">
+  <img src="https://img.shields.io/github/last-commit/iescly/InstaReport?style=for-the-badge&color=16a34a" alt="Last Commit">
 </p>
+
 
 ---
 
